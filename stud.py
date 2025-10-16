@@ -37,3 +37,57 @@ def search_student():
             print(f"Program: {student['program']}")
             return
     print("Student not found please input a valid student id")
+    # STUDENT MANAGEMENT SYSTEM
+
+
+
+def add_student():
+    class_name = input("Enter class name:")
+    course = input("Enter course name:")
+    grade = input("Enter grade:")
+    student = {"Class": class_name,
+               "Course": course,
+               "Grade": grade
+               }
+    students.append(student)
+    print("student record added successfully!\n")
+
+def view_students():
+    if not students:
+        print("No student record found.\n")
+        return
+    print("\n === Student Records ===")
+    for i, student in enumerate(student, start=1):
+        print(f"{i}. Class:{student['Class']}, Course: {student['Course']}, Grade: {student['Grade']}")
+        print()
+
+
+def search_by_class():
+    search_class = input("Enter class to search:")
+    results = [s for s in students if s["Class"].lower() ==search_class.lower()]
+    if results:
+        print(f"\nStudents in class '{search_class}':")
+        for student in results:
+            print(f"Course:{student['Course']}, Grade: {student['Grade']}")
+    else:
+        print("No records found for that class.\n")
+
+def search_by_course():
+    search_course = input("Enter course to search:")
+    results = [s for s in students if s["Course"].lower() == search_course.lower()]
+    if results:
+        print(f"\nStudents enrolled in course '{search_course}':")
+        for student in results:
+            print(f"Class: {student['Class']}, Grade: {student['Grade']}")
+    else:
+        print("No records found for that course.\n")
+          
+
+            
+                      
+
+
+
+
+
+               
