@@ -81,13 +81,48 @@ def search_by_course():
             print(f"Class: {student['Class']}, Grade: {student['Grade']}")
     else:
         print("No records found for that course.\n")
-          
 
-            
-                      
+#  Student Grades and Assessemnt system 
 
+grades_data = {} 
+def add_grade(student_id, subjet, score ) :
+    if student_id not in grades_data:
+        grades_data[student_id] = {}
+    grades_data[student_id][subjet] = score
+    print(f"Grade added for student {student_id} in subject {subjet} with score {score}.")
+def show_grades(student_id):
+    if student_id in grades_data:
+        print(f"Grades for student {student_id}:")
+        for subject, score in grades_data[student_id].items():
+            print(f"{subject}: {score}")
+    else:
+        print(f"No grades found for student {student_id}.")
+def calculate_average(student_id):
+    if student_id in grades_data:
+        scores = grades_data[student_id].values()
+        average = sum(scores) / len(scores)
+        print(f"Average score for student {student_id}: {average:.2f}")
+    else:
+        print(f"No grades found for student {student_id}.")
 
-
-
-
-               
+        def generate_report_card(student_id) :
+            if student_id in grades_data :
+                print (show_grades (student_id))
+                average = calculate_average(student_id) 
+                print (f"final result :{'Done' if average >= 50 else 'Fail'}")
+                print ("         ")
+            else :
+                print ("student not found.")
+        def update_grade(student_id, subject, new_score ) :
+            if student_id in grades_data and subject in grades_data[student_id]:
+                old_score = grades_data[student_id][subject]
+                grades_data[student_id][subject] = new_score 
+                print (f"note edit :{subject} {old_score} become {new_score}")
+            else :
+                print ("student or subject not found .") 
+        def delete_grade(student_id, subject):
+            if student_id in grades_data and subject in grades_data[student_id] :
+                del grades_data[student_id][subject]      
+                print (f"note deleted : {subject}")
+            else :
+                print("unable to deleted - student or subject not found ")
