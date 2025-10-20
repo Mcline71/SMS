@@ -26,7 +26,7 @@ def display_students():
         return
     print( "STUDENT LIST")
     for s in students:
-        print(f"ID: {s['id']}Name: {s['name']}Class: {s['class']}Program: {s['program']}")
+        print(f"ID:{s['id']}  Name:{s['name']}  Class:{s['class']}  Program:{s['program']}")
     print()
 
 def search_student():
