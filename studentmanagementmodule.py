@@ -42,7 +42,40 @@ def search_student():
     print(" Student not found ")
 
 
-#  GRADES & ASSESSMENT PART(MR IBRAHIM)
+
+def view_students():
+    if not students:
+        print("No student record found.\n")
+        return
+    print("\n === Student Records ===")
+    for i, student in enumerate(student, start=1):
+        print(f"{i}. Class:{student['Class']}, Course: {student['Course']}, Grade: {student['Grade']}")
+        print()
+
+# Mr Ibrahim
+class_data = {}
+def search_by_class():
+    search_class = input("Enter class to search:")
+    results = [s for s in students if s["Class"].lower() ==search_class.lower()]
+    if results:
+        print(f"\nStudents in class '{search_class}':")
+        for student in results:
+            print(f"Course:{student['Course']}, Grade: {student['Grade']}")
+    else:
+        print("No records found for that class.\n")
+
+def search_by_course():
+    search_course = input("Enter course to search:")
+    results = [s for s in students if s["Course"].lower() == search_course.lower()]
+    if results:
+        print(f"\nStudents enrolled in course '{search_course}':")
+        for student in results:
+            print(f"Class: {student['Class']}, Grade: {student['Grade']}")
+    else:
+        print("No records found for that course.\n")
+
+
+#  GRADES & ASSESSMENT PART(emmanuel)
 grades_data = {}
 
 def add_grade():
@@ -99,7 +132,7 @@ def delete_grade():
     else:
         print(" Grade not found.\n")
 
-# FEE MANAGEMENT (EMMANUEL)
+# FEE MANAGEMENT (E)
 students_fees = {}
 def register_fee_student():
     """Register a new student for fee management"""
@@ -150,14 +183,16 @@ def main_menu():
 1. Add Student
 2. Display Students
 3. Search Student
-4. Add Grade
-5. Show Grades
-6. Calculate Average
-7. Update Grade
-8. Delete Grade
-9. Register Fee Student
-10. Record Fee Payment
-11. Display Fee Records
+4. View Students
+5. search Class
+6. search Course
+7. Show Grades
+8. Calculate Average
+9. Update Grade
+10. Delete Grade
+11. Register Fee Student
+12. Record Fee Payment
+13. Display Fee Records
 0. Exit
 """)
         choice = input("Enter choice: ")
@@ -168,20 +203,24 @@ def main_menu():
         elif choice == "3":
             search_student()
         elif choice == "4":
-            add_grade()
+            view_students()
         elif choice == "5":
-            show_grades()
+            search_by_class()
         elif choice == "6":
-            calculate_average()
+            search_by_course()
         elif choice == "7":
-            update_grade()
+            add_grade()
         elif choice == "8":
-            delete_grade()
+            show_grades()
         elif choice == "9":
-            view_fee_structure()
+            calculate_average()
         elif choice == "10":
-            record_payment()
+            update_grade()
         elif choice == "11":
+            delete_grade()
+        elif choice == "12":
+            record_payment()
+        elif choice == "14":
             display_fee_records()
         elif choice == "0":
             print("👋 Exiting... Goodbye!")
